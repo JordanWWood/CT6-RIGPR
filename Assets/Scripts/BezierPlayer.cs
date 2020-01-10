@@ -24,19 +24,23 @@ public class BezierPlayer : MonoBehaviour {
         if (time < 2 && !set) {
             time += Time.deltaTime;
             return;
-        } else if (time >= 2 && !set) {
+        } 
+        
+        if (time >= 2 && !set) {
             trackerStartPos = trackerObject.transform.localPosition;
             set = true;
         }
 
         trackerPosDiff = trackerStartPos - trackerObject.transform.localPosition;
         offset += new Vector2((-trackerPosDiff.x) / 100, 0);
-        
-        distance += Time.deltaTime / duration;
+        if (offset.x > .5f) offset.x = .5f;
+        else if (offset.x < -.5f) offset.x = -.5f;
+
+            distance += Time.deltaTime / duration;
 
         transform.position = curve.CalcPositionAndTangentByDistanceRatio(distance, out var tangent);
         transform.rotation = Quaternion.LookRotation(tangent);
 
-        playerObject.transform.localPosition += new Vector3(offset.x, offset.y);
+        playerObject.transform.localPosition = new Vector3(offset.x, offset.y + 0.492f);
     }
 }

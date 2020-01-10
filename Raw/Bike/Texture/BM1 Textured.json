@@ -1,0 +1,58 @@
+{
+    "format": {
+        "version": "1.0"
+    },
+    "shaders": {
+        "Main shader": {
+            "parameters": {
+                "Common Parameters": {
+                    "ao_intensity": 0.3799999952316284,
+                    "emissive_intensity": 2.9200000762939453,
+                    "horizonFade": 0.7699999809265137,
+                    "nbSamples": 32
+                },
+                "Parallax Occlusion Mapping": {
+                    "maxPOMSamples": 16,
+                    "minPOMSamples": 4,
+                    "pomStrength": 0.8999999761581421,
+                    "usePOM": false
+                },
+                "Subsurface Scattering Parameters": {
+                    "sssColor": [
+                        1,
+                        0,
+                        0.010000228881835938
+                    ],
+                    "sssEnabled": true,
+                    "sssScale": 0.6399999856948853,
+                    "sssType": 1
+                }
+            },
+            "shader": "pbr-metal-rough",
+            "shaderInstance": "Main shader"
+        }
+    },
+    "texturesets": {
+        "DJ Deck": {
+            "shader": "Main shader"
+        },
+        "Dash Controls": {
+            "shader": "Main shader"
+        },
+        "Knobs": {
+            "shader": "Main shader"
+        },
+        "Main Bike Body": {
+            "shader": "Main shader"
+        },
+        "Seating Parts": {
+            "shader": "Main shader"
+        },
+        "Side Pannels": {
+            "shader": "Main shader"
+        },
+        "Speakers": {
+            "shader": "Main shader"
+        }
+    }
+}
