@@ -1,5 +1,6 @@
 ﻿
 public class Config {
+    public string name;
     public int beatsPerMinute;
     public int beatsPerRow;
     public Duration duration;
