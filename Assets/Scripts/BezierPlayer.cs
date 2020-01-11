@@ -8,6 +8,7 @@ public class BezierPlayer : MonoBehaviour {
     public float duration = 10;
     public GameObject playerObject;
     public GameObject trackerObject;
+    public AudioController audioSource;
 
     public Vector3 trackerStartPos;
     public Vector3 trackerPosDiff;
@@ -19,6 +20,8 @@ public class BezierPlayer : MonoBehaviour {
     public int Score = 0;
     public int Streak = 0;
     
+    private bool playing = false;
+    
     void Start() {
         curve = GameObject.FindWithTag("TrackCurve").GetComponent<BGCcMath>();
         
@@ -28,6 +31,11 @@ public class BezierPlayer : MonoBehaviour {
     private Vector3 lastPoint;
     private bool set = false;
     private void Update() {
+        if (!playing) {
+            audioSource.PlayAudio();
+            playing = true;
+        }
+        
         Config config = configLoader.config;
         if (config != null) duration = (config.duration.minutes * 60) + config.duration.seconds;
         

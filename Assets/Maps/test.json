@@ -1,9 +1,10 @@
 {
-    "beatsPerMinute": 173,
+    "name": "FlyAway",
+    "beatsPerMinute": 148,
     "beatsPerRow": 1,
     "duration": {
-        "minutes": 1,
-        "seconds": 20
+        "minutes": 3,
+        "seconds": 14
     },
     "map": [
         [0,0,0,0,0],
@@ -12,7 +13,7 @@
         [0,0,0,0,0],
         [0,0,0,0,0],
         [0,0,0,0,0],
-        [0,0,0,0,0],
+        [0,0,0,0,0],    
         [0,0,0,0,0],
         [0,0,0,0,0],
         [0,0,0,0,0],
