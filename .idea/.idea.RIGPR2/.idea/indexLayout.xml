@@ -23,6 +23,8 @@
       <Path>.idea</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
+      <Path>Prototypes</Path>
+      <Path>Raw</Path>
       <Path>Temp</Path>
       <Path>obj</Path>
     </explicitExcludes>
