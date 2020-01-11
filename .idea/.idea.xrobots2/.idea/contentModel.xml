@@ -9,11 +9,11 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="BezierPlayer.cs" t="Include" />
-          <e p="config.cs" t="Include" />
+          <e p="Config.cs" t="Include" />
           <e p="ConfigLoader.cs" t="Include" />
-          <e p="CreateTrack.cs" t="Include" />
           <e p="Note.cs" t="Include" />
           <e p="StaticEvent.cs" t="Include" />
+          <e p="TrackManager.cs" t="Include" />
         </e>
         <e p="ThirdParty" t="Include">
           <e p="BansheeGz" t="Include">

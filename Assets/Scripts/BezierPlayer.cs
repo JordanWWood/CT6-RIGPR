@@ -15,9 +15,14 @@ public class BezierPlayer : MonoBehaviour {
     private BGCcMath curve;
     private float time;
     private float distance;
+
+    public int Score = 0;
+    public int Streak = 0;
     
     void Start() {
         curve = GameObject.FindWithTag("TrackCurve").GetComponent<BGCcMath>();
+        
+        StaticEvents.NoteHitEvent.AddListener(OnNoteHit);
     }
 
     private Vector3 lastPoint;
@@ -47,5 +52,9 @@ public class BezierPlayer : MonoBehaviour {
         transform.rotation = Quaternion.LookRotation(tangent);
 
         playerObject.transform.localPosition = new Vector3(offset.x, offset.y + 0.562f);
+    }
+
+    void OnNoteHit() {
+        Score++;
     }
 }
