@@ -2,6 +2,11 @@
 public class Config {
     public int beatsPerMinute;
     public int beatsPerRow;
-    public float length;
+    public Duration duration;
     public bool[][] map;
+    
+    public class Duration {
+        public int minutes;
+        public int seconds;
+    }
 }

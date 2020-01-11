@@ -6,12 +6,18 @@ using UnityEngine;
 public class CreateTrack : MonoBehaviour {
     public GameObject track;
     public GameObject note;
-    public ConfigLoader ConfigLoader;
+    public ConfigLoader configLoader;
     
     // Start is called before the first frame update
     void Start() {
+        Config config = configLoader.config;
+        
         var z = 0f;
-        for (int i = 0; i < 100; i++) {
+        var segmentsMinutes = (config.duration.minutes * (config.beatsPerMinute / 6));
+        var segmentsSeconds = ((float) config.duration.seconds / 60) * (config.beatsPerMinute / 6);
+        var numberOfSegments = segmentsMinutes + (int) segmentsSeconds;
+            
+        for (int i = 0; i < numberOfSegments; i++) {
             GameObject item = Instantiate(track, transform);
             
             if (i != 0) z += 1.8044f;
@@ -21,8 +27,7 @@ public class CreateTrack : MonoBehaviour {
             BGCurve curve = curveObject.GetComponent<BGCurve>();
             curve.AddPoint(new BGCurvePoint(curve, new Vector3(0, 0, z), true));
         }
-
-        Config config = ConfigLoader.config;
+        
         z = 1.8044f;
         for (int i = 0; i < config.map.Length; i++) {
             if (i != 0) z += 0.30073f * config.beatsPerRow;
