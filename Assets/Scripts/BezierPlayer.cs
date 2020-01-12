@@ -31,10 +31,10 @@ public class BezierPlayer : MonoBehaviour {
     private Vector3 lastPoint;
     private bool set = false;
     private void Update() {
-        if (!playing) {
-            audioSource.PlayAudio();
-            playing = true;
-        }
+        // if (!playing) {
+        //     audioSource.PlayAudio();
+        //     playing = true;
+        // }
         
         Config config = configLoader.config;
         if (config != null) duration = (config.duration.minutes * 60) + config.duration.seconds;
