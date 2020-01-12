@@ -18,17 +18,17 @@ public class TrackManager : MonoBehaviour {
         var z = 0f;
         var segmentsMinutes = (config.duration.minutes * (config.beatsPerMinute / 6));
         var segmentsSeconds = ((float) config.duration.seconds / 60) * (config.beatsPerMinute / 6);
-        var numberOfSegments = (segmentsMinutes + (int) segmentsSeconds) * speedMultiplier;
+        var numberOfSegments = ((segmentsMinutes + (int) segmentsSeconds) + 1) * speedMultiplier;
 
         for (int i = 0; i < numberOfSegments; i++)
         {
-            GameObject item = Instantiate(track, transform);
+            var item = Instantiate(track, transform);
 
             if (i != 0) z += 1.8044f;
             item.transform.position = new Vector3(0, 0, z);
 
-            GameObject curveObject = GameObject.FindWithTag("TrackCurve");
-            BGCurve curve = curveObject.GetComponent<BGCurve>();
+            var curveObject = GameObject.FindWithTag("TrackCurve");
+            var curve = curveObject.GetComponent<BGCurve>();
             curve.AddPoint(new BGCurvePoint(curve, new Vector3(0, 0, z), true));
         }
 
@@ -45,7 +45,7 @@ public class TrackManager : MonoBehaviour {
             if (config.map[i][4]) x = -0.245f + -0.245f;
             if (x == -1f) continue;
 
-            GameObject item = Instantiate(note, transform);
+            var item = Instantiate(note, transform);
             item.transform.position = new Vector3(x, .26f, z);
         }
     }

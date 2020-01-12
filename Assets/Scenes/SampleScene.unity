@@ -231,7 +231,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1921307843}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &226508456
+--- !u!81 &33137936
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33137935}
+  m_Enabled: 1
+--- !u!114 &298482113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -558,7 +566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: 84c78f5fe9e2efb4ca991a1be808f50a, type: 2}
   m_StaticLightingSkyUniqueID: 2
-  m_SkySettings: {fileID: 226508456}
+  m_SkySettings: {fileID: 298482113}
   m_SkySettingsFromProfile: {fileID: -5451219922727863777, guid: 84c78f5fe9e2efb4ca991a1be808f50a,
     type: 2}
 --- !u!114 &987214167
@@ -750,8 +758,6 @@ MonoBehaviour:
   mathChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: BansheeGz.BGSpline.Components.BGCcMath+MathChangedEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   spheresScale: 1
   spheresColor: {r: 1, g: 1, b: 1, a: 1}
   spheresCount: 100
@@ -766,6 +772,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bike
+      objectReference: {fileID: 0}
+    - target: {fileID: 781965840214635715, guid: 939f0de06dae9c84087c8c84e742ecb6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8584428467110093075, guid: 939f0de06dae9c84087c8c84e742ecb6,
         type: 3}
@@ -937,8 +948,9 @@ AudioSource:
   m_GameObject: {fileID: 1064405665}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2efdbdc1da7b04f49809dd23279e0de7,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: a87ae2e65e6000b4f8c414208bfa7568, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1118,7 +1130,7 @@ MonoBehaviour:
   duration: 10
   playerObject: {fileID: 33137935}
   trackerObject: {fileID: 400448439}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1064405666}
   trackerStartPos: {x: 0, y: 0, z: 0}
   trackerPosDiff: {x: 0, y: 0, z: 0}
   Score: 0
