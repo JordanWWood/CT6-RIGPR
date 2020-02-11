@@ -19,6 +19,8 @@ public class BezierPlayer : MonoBehaviour {
 
     public int Score = 0;
     public int Streak = 0;
+    public int Multiplier = 1;
+    public int Misses = 0;
     
     private bool playing = false;
 
@@ -30,6 +32,7 @@ public class BezierPlayer : MonoBehaviour {
         curve = GameObject.FindWithTag("TrackCurve").GetComponent<BGCcMath>();
         
         StaticEvents.NoteHitEvent.AddListener(OnNoteHit);
+        StaticEvents.NoteMissEvent.AddListener(OnNoteMiss);
     }
 
     private Vector3 lastPoint;
@@ -62,6 +65,15 @@ public class BezierPlayer : MonoBehaviour {
     }
 
     void OnNoteHit() {
-        Score++;
+        Multiplier = Mathf.FloorToInt(f: Streak / 15f) + 1;
+        if (Multiplier >= 4) Multiplier = 4;
+
+        Score += Multiplier;
+        Streak++;
+    }
+
+    void OnNoteMiss() {
+        Streak = 0;
+        Misses++;
     }
 }
