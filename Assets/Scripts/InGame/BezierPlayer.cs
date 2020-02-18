@@ -2,6 +2,7 @@
 using BansheeGz.BGSpline.Components;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BezierPlayer : MonoBehaviour {
     [Header("Configuration Attributes")]
@@ -49,6 +50,14 @@ public class BezierPlayer : MonoBehaviour {
         StaticEvents.NoteMissEvent.AddListener(OnNoteMiss);
         
         config = configLoader.config;
+        Debug.Log("AudioClip is " + "Music/" + PersistantData.SelectedSong);
+        var audioClip = Resources.Load<AudioClip>("Music/" + PersistantData.SelectedSong);
+        if (audioClip == null) {
+            Debug.LogError("Failed to load AudioClip");
+            SceneManager.LoadSceneAsync("Scenes/MenuScene");
+        }
+
+        AudioSource.clip = audioClip;
     }
 
     private Vector3 lastPoint;
