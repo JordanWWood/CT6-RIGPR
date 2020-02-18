@@ -19,7 +19,7 @@ public class TrackManager : MonoBehaviour {
         // Calculate the number of segments required for the length of the song pulled from the config loader
         var segmentsMinutes = (config.duration.minutes * (config.beatsPerMinute / 6));
         var segmentsSeconds = ((float) config.duration.seconds / 60) * (config.beatsPerMinute / 6);
-        var numberOfSegments = ((segmentsMinutes + (int) segmentsSeconds) + 1) * speedMultiplier;
+        var numberOfSegments = (((segmentsMinutes + (int) segmentsSeconds) + 1) * speedMultiplier) + 5;
 
         // Place track segments and points of the curve iteratively for the number of times previously calculated
         for (int i = 0; i < numberOfSegments; i++) {
@@ -34,10 +34,10 @@ public class TrackManager : MonoBehaviour {
             curve.AddPoint(new BGCurvePoint(curve, new Vector3(0, 0, z), true));
         }
         
-        // Start placing notes in the second track segment
-        z = 1.8044f;
+        // Start placing notes in the fifth track segment
+        z = 1.8044f * 5;
         
-        // Generate notes bade on what is read from the configuration for the given song.
+        // Generate notes based on what is read from the configuration for the given song.
         for (int i = 0; i < config.map.Length; i++) {
             if (i != 0) z += (0.30073f * config.beatsPerRow) * speedMultiplier;
 

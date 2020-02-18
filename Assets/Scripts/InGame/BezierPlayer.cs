@@ -1,26 +1,43 @@
 ﻿using System;
 using BansheeGz.BGSpline.Components;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BezierPlayer : MonoBehaviour {
+    [Header("Configuration Attributes")]
     public ConfigLoader configLoader;
+    
+    [Header("Player Information")]
     public Vector2 offset;
     public GameObject playerObject;
     public GameObject trackerObject;
-    public AudioController audioSource;
 
+    [Header("Track Settings")]
     public Vector3 trackerStartPos;
     public Vector3 trackerPosDiff;
+    public AudioSource AudioSource;
 
+    [Header("User Interface")]
+    public TextMeshProUGUI ScoreUI;
+    public TextMeshProUGUI ComboUI;
+    public TextMeshProUGUI MultiplierUI;
+    public TextMeshProUGUI MissesUI;
+    
+    [Header("Debug")]
+    public int Score = 0;
+    public int Streak = 0;
+    public int Multiplier = 1;
+    public int Misses = 0;
+    
     private BGCcMath curve;
     private float time;
     private float distance;
     private float duration = 10;
-
-    public int Score = 0;
-    public int Streak = 0;
     
     private bool playing = false;
+    private Config config;
+    private bool started = false;
 
     private void OnCollisionEnter(Collision other) {
         throw new NotImplementedException();
@@ -30,14 +47,24 @@ public class BezierPlayer : MonoBehaviour {
         curve = GameObject.FindWithTag("TrackCurve").GetComponent<BGCcMath>();
         
         StaticEvents.NoteHitEvent.AddListener(OnNoteHit);
+        StaticEvents.NoteMissEvent.AddListener(OnNoteMiss);
+        
+        config = configLoader.config;
+        Debug.Log("AudioClip is " + "Music/" + PersistantData.SelectedSong);
+        var audioClip = Resources.Load<AudioClip>("Music/" + PersistantData.SelectedSong);
+        if (audioClip == null) {
+            Debug.LogError("Failed to load AudioClip");
+            SceneManager.LoadSceneAsync("Scenes/MenuScene");
+        }
+
+        AudioSource.clip = audioClip;
     }
 
     private Vector3 lastPoint;
     private bool set = false;
     private void Update() {
-        Config config = configLoader.config;
         if (config != null) duration = (config.duration.minutes * 60) + config.duration.seconds;
-        
+
         if (time < 2 && !set) {
             time += Time.deltaTime;
             return;
@@ -59,9 +86,35 @@ public class BezierPlayer : MonoBehaviour {
         transform.rotation = Quaternion.LookRotation(tangent);
 
         playerObject.transform.localPosition = new Vector3(offset.x, offset.y + 0.562f);
+
+        if (started == false) {
+            var delay = (1f / config.beatsPerMinute) * 5f;
+            AudioSource.PlayDelayed(delay);
+            started = true;
+        }
     }
 
     void OnNoteHit() {
-        Score++;
+        Multiplier = Mathf.FloorToInt(f: Streak / 15f) + 1;
+        if (Multiplier > 4) Multiplier = 4;
+
+        Score += Multiplier;
+        Streak++;
+
+        UpdateUI();
+    }
+
+    void OnNoteMiss() {
+        Streak = 0;
+        Misses++;
+        
+        UpdateUI();
+    }
+
+    void UpdateUI() {
+        ScoreUI.text = "Score: " + Score;
+        ComboUI.text = "Combo: " + Streak;
+        MultiplierUI.text = "Multi: " + Multiplier;
+        MissesUI.text = "Misses: " + Misses;
     }
 }

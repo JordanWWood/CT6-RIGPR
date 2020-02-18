@@ -10,7 +10,7 @@ public class Note : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         Debug.Log("Note Trigger Enter");
-        if (!other.gameObject.CompareTag("NoteCollision")) return;
+        if (!other.gameObject.CompareTag("NoteCollision") || gameObject.CompareTag("BackNote")) return;
         
         StaticEvents.NoteHitEvent.Invoke();
         Destroy(gameObject);
