@@ -89,6 +89,8 @@ GameObject:
   - component: {fileID: 612155427301751993}
   - component: {fileID: 8534064449786786852}
   - component: {fileID: 5539103579764999818}
+  - component: {fileID: 452085865905362281}
+  - component: {fileID: 2109424183603640593}
   m_Layer: 0
   m_Name: Main Bike Body
   m_TagString: Untagged
@@ -156,6 +158,35 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &452085865905362281
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781965840214635715}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 1.15, z: 2.03}
+  m_Center: {x: 0.045535505, y: 0.0047498057, z: -0.32}
+--- !u!54 &2109424183603640593
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781965840214635715}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!1 &3738097277735118041
 GameObject:
   m_ObjectHideFlags: 0
