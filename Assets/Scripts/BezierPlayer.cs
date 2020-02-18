@@ -1,22 +1,33 @@
 ﻿using System;
 using BansheeGz.BGSpline.Components;
+using TMPro;
 using UnityEngine;
 
 public class BezierPlayer : MonoBehaviour {
+    [Header("Configuration Attributes")]
     public ConfigLoader configLoader;
+    
+    [Header("Player Information")]
     public Vector2 offset;
     public GameObject playerObject;
     public GameObject trackerObject;
     public AudioController audioSource;
 
+    [Header("Track Settings")]
     public Vector3 trackerStartPos;
     public Vector3 trackerPosDiff;
+
+    [Header("User Interface")]
+    public TextMeshProUGUI ScoreUI;
+    public TextMeshProUGUI ComboUI;
+    public TextMeshProUGUI MultiplierUI;
 
     private BGCcMath curve;
     private float time;
     private float distance;
     private float duration = 10;
 
+    [Header("Debug")]
     public int Score = 0;
     public int Streak = 0;
     public int Multiplier = 1;
@@ -50,6 +61,10 @@ public class BezierPlayer : MonoBehaviour {
             trackerStartPos = trackerObject.transform.localPosition;
             set = true;
         }
+
+        ScoreUI.text = "Score: " + Score;
+        ComboUI.text = "Combo: " + Streak;
+        MultiplierUI.text = "Multi: " + Multiplier;
 
         trackerPosDiff = trackerStartPos - trackerObject.transform.localPosition;
         offset += new Vector2((-trackerPosDiff.x) / 100, 0);
