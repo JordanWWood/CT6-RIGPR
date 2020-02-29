@@ -19,6 +19,7 @@
             <e p="TrackManager.cs" t="Include" />
           </e>
           <e p="Menu" t="Include">
+            <e p="ListSongs.cs" t="Include" />
             <e p="SelectSong.cs" t="Include" />
           </e>
           <e p="Persistant" t="Include">
@@ -395,11 +396,6 @@
               <e p="VRModuleDeviceState.cs" t="Include" />
               <e p="VRModuleEvent.cs" t="Include" />
               <e p="VRModuleManager.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Newtonsoft.JSON" t="Include">
-            <e p="net45" t="Include">
-              <e p="Newtonsoft.Json.xml" t="Include" />
             </e>
           </e>
           <e p="TextMesh Pro" t="Include">

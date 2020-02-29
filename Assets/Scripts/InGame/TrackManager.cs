@@ -39,6 +39,7 @@ public class TrackManager : MonoBehaviour {
         
         // Generate notes based on what is read from the configuration for the given song.
         for (int i = 0; i < config.map.Length; i++) {
+            // TODO replace with logic to place on curve so it isnt a perfectly straight tack
             if (i != 0) z += (0.30073f * config.beatsPerRow) * speedMultiplier;
 
             // Each lane is precisely 0.245 units wide. 
