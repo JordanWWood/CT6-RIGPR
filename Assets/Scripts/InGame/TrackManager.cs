@@ -4,11 +4,14 @@ using BansheeGz.BGSpline.Curve;
 using UnityEngine;
 
 public class TrackManager : MonoBehaviour {
+    [Header("Track Settings")]
     public GameObject track;
     public GameObject note;
     public ConfigLoader configLoader;
-
     public int speedMultiplier = 6;
+
+    [Header("Building Settings")]
+    public List<GameObject> buildingPrefabs;
 
     void Start() {
         // Load the configuration from the config manager which has already loaded the correct config for the chosen song
@@ -21,9 +24,12 @@ public class TrackManager : MonoBehaviour {
         var segmentsSeconds = ((float) config.duration.seconds / 60) * (config.beatsPerMinute / 6);
         var numberOfSegments = (((segmentsMinutes + (int) segmentsSeconds) + 1) * speedMultiplier) + 5;
 
+        var trackGO = Instantiate(new GameObject(), transform);
+        trackGO.name = "Track";
+        List<Vector3> segments = new List<Vector3>();
         // Place track segments and points of the curve iteratively for the number of times previously calculated
         for (int i = 0; i < numberOfSegments; i++) {
-            var item = Instantiate(track, transform);
+            var item = Instantiate(track, trackGO.transform);
 
             // TODO replace with logic to place on curve so it isnt a perfectly straight tack
             if (i != 0) z += 1.8044f;
@@ -32,11 +38,14 @@ public class TrackManager : MonoBehaviour {
             var curveObject = GameObject.FindWithTag("TrackCurve");
             var curve = curveObject.GetComponent<BGCurve>();
             curve.AddPoint(new BGCurvePoint(curve, new Vector3(0, 0, z), true));
+            segments.Add(new Vector3(0,0, z));
         }
         
         // Start placing notes in the fifth track segment
         z = 1.8044f * 5;
         
+        var notesGO = Instantiate(new GameObject(), transform);
+        notesGO.name = "Notes";
         // Generate notes based on what is read from the configuration for the given song.
         for (int i = 0; i < config.map.Length; i++) {
             // TODO replace with logic to place on curve so it isnt a perfectly straight tack
@@ -51,9 +60,33 @@ public class TrackManager : MonoBehaviour {
             if (config.map[i][4]) x = -0.245f + -0.245f;
             if (x == -1f) continue;
             
-            var item = Instantiate(note, transform);
+            var item = Instantiate(note, notesGO.transform);
             item.tag = "NoteCollision";
             item.transform.position = new Vector3(x, .26f, z);
         }
+
+        var buildingGO = Instantiate(new GameObject(), transform);
+        buildingGO.name = "Buildings";
+        foreach (var segment in segments) {
+            var r = Random.Range(0, 10);
+
+            for (int i = 0; i < r; i++) {
+                var x = rollSafeLocation();
+                
+                var buildingIndex = Random.Range(0, buildingPrefabs.Count);
+                var item = Instantiate(buildingPrefabs[buildingIndex], buildingGO.transform);
+                
+                var rotation = new Vector3(item.transform.rotation.eulerAngles.x, 0, Random.Range(0.0f, 360.0f));
+                item.transform.rotation = Quaternion.Euler(rotation);
+                item.transform.position = new Vector3(x, 0, segment.z);
+            }
+        }
+    }
+
+    float rollSafeLocation() {
+        var r = Random.Range(-50.0f, 50.0f);
+        if (r < 3.0f && r > -3.0f) return rollSafeLocation();
+
+        return r;
     }
 }
