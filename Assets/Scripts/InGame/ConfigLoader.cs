@@ -6,6 +6,7 @@ public class ConfigLoader : MonoBehaviour {
     public Config config;
 
     private void Awake() {
-        config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("Assets/Maps/" + PersistantData.SelectedSong + ".json"));
+        var data = File.ReadAllText("Assets/Maps/" + PersistantData.SelectedSong + ".json");
+        config = JsonConvert.DeserializeObject<Config>(data);
     }
 }

@@ -3,6 +3,7 @@ using BansheeGz.BGSpline.Components;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BezierPlayer : MonoBehaviour {
     [Header("Configuration Attributes")]
@@ -29,6 +30,9 @@ public class BezierPlayer : MonoBehaviour {
     public int Streak = 0;
     public int Multiplier = 1;
     public int Misses = 0;
+
+    public Slider Slider;
+    public TextMeshProUGUI SliderText;
     
     private BGCcMath curve;
     private float time;
@@ -38,10 +42,6 @@ public class BezierPlayer : MonoBehaviour {
     private bool playing = false;
     private Config config;
     private bool started = false;
-
-    private void OnCollisionEnter(Collision other) {
-        throw new NotImplementedException();
-    }
 
     void Start() {
         curve = GameObject.FindWithTag("TrackCurve").GetComponent<BGCcMath>();
@@ -58,6 +58,8 @@ public class BezierPlayer : MonoBehaviour {
         }
 
         AudioSource.clip = audioClip;
+
+        Slider.value = .5f;
     }
 
     private Vector3 lastPoint;
@@ -73,6 +75,11 @@ public class BezierPlayer : MonoBehaviour {
         if (time >= 2 && !set) {
             trackerStartPos = trackerObject.transform.localPosition;
             set = true;
+        }
+
+        SliderText.text = offset.x.ToString();
+        if (Slider.value - .5f != offset.x) {
+            offset.x = Slider.value - .5f;
         }
 
         trackerPosDiff = trackerStartPos - trackerObject.transform.localPosition;

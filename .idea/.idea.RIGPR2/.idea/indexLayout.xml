@@ -15,12 +15,14 @@
       <Path>Library/PackageCache/com.unity.visualeffectgraph@6.9.2-preview</Path>
       <Path>Library/PackageCache/com.unity.xr.oculus.standalone@1.38.3</Path>
       <Path>Library/PackageCache/com.unity.xr.openvr.standalone@1.0.5</Path>
+      <Path>Library/PackageCache/jillejr.newtonsoft.json-for-unity@12.0.201</Path>
       <Path>Packages</Path>
       <Path>ProjectSettings</Path>
     </explicitIncludes>
     <explicitExcludes>
       <Path>.git</Path>
       <Path>.idea</Path>
+      <Path>Builds</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
       <Path>Prototypes</Path>
