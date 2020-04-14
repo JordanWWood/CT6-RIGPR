@@ -101,7 +101,8 @@ public class BezierPlayer : MonoBehaviour {
         }
         
         if (distance >= 1f) {
-            SceneManager.LoadSceneAsync("Scenes/MenuScene");
+            PersistantData.Stats.Score = Score;
+            SceneManager.LoadSceneAsync("Scenes/EndScene");
         }
     }
 
