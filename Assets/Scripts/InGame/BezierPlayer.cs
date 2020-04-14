@@ -26,10 +26,10 @@ public class BezierPlayer : MonoBehaviour {
     public TextMeshProUGUI MissesUI;
     
     [Header("Debug")]
-    public int Score = 0;
-    public int Streak = 0;
-    public int Multiplier = 1;
-    public int Misses = 0;
+    public uint Score = 0;
+    public uint Streak = 0;
+    public uint Multiplier = 1;
+    public uint Misses = 0;
 
     public Slider Slider;
     public TextMeshProUGUI SliderText;
@@ -99,21 +99,30 @@ public class BezierPlayer : MonoBehaviour {
             AudioSource.PlayDelayed(delay);
             started = true;
         }
+        
+        if (distance >= 1f) {
+            SceneManager.LoadSceneAsync("Scenes/MenuScene");
+        }
     }
 
     void OnNoteHit() {
-        Multiplier = Mathf.FloorToInt(f: Streak / 15f) + 1;
+        Multiplier = (uint) Mathf.FloorToInt(f: Streak / 15f) + 1;
         if (Multiplier > 4) Multiplier = 4;
 
         Score += Multiplier;
         Streak++;
+        PersistantData.Stats.Hits++;
 
         UpdateUI();
     }
 
     void OnNoteMiss() {
+        if (Streak > PersistantData.Stats.LongestCombo)
+            PersistantData.Stats.LongestCombo = Streak;
+        
         Streak = 0;
         Misses++;
+        PersistantData.Stats.Misses++;
         
         UpdateUI();
     }

@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using BansheeGz.BGSpline.Curve;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TrackManager : MonoBehaviour {
     [Header("Track Settings")]
@@ -83,9 +85,13 @@ public class TrackManager : MonoBehaviour {
         }
     }
 
+    private void Update() {
+        
+    }
+
     float rollSafeLocation() {
         var r = Random.Range(-50.0f, 50.0f);
-        if (r < 3.0f && r > -3.0f) return rollSafeLocation();
+        if (r < 4.0f && r > -4.0f) return rollSafeLocation();
 
         return r;
     }

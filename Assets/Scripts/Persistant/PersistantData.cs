@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PersistantData : MonoBehaviour {
     public static string SelectedSong = "None";
-    
+    public static Stats Stats;
+
     private void Awake() {
         DontDestroyOnLoad(this);
     }
