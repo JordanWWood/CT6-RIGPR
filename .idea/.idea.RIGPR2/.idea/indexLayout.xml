@@ -17,6 +17,7 @@
       <Path>Library/PackageCache/com.unity.timeline@1.2.6</Path>
       <Path>Library/PackageCache/com.unity.visualeffectgraph@7.3.1</Path>
       <Path>Library/PackageCache/com.unity.xr.legacyinputhelpers@2.1.2</Path>
+      <Path>Library/PackageCache/com.unity.xr.legacyinputhelpers@2.1.3</Path>
       <Path>Library/PackageCache/com.unity.xr.management@3.2.6</Path>
       <Path>Library/PackageCache/jillejr.newtonsoft.json-for-unity@12.0.201</Path>
       <Path>Packages</Path>
@@ -30,6 +31,7 @@
       <Path>Logs</Path>
       <Path>Prototypes</Path>
       <Path>Raw</Path>
+      <Path>Temp</Path>
       <Path>obj</Path>
     </explicitExcludes>
   </component>
