@@ -60,6 +60,7 @@ public class BezierPlayer : MonoBehaviour {
         AudioSource.clip = audioClip;
 
         Slider.value = .5f;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private Vector3 lastPoint;
@@ -78,9 +79,11 @@ public class BezierPlayer : MonoBehaviour {
         }
 
         SliderText.text = offset.x.ToString();
-        if (Slider.value - .5f != offset.x) {
-            offset.x = Slider.value - .5f;
-        }
+        // if (Slider.value - .5f != offset.x) {
+        //     offset.x = Slider.value - .5f;
+        // }
+
+        offset.x += Input.GetAxis("Mouse X") / 5;
 
         trackerPosDiff = trackerStartPos - trackerObject.transform.localPosition;
         offset += new Vector2((-trackerPosDiff.x) / 100, 0);
