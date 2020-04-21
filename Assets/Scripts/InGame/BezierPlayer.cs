@@ -71,17 +71,17 @@ public class BezierPlayer : MonoBehaviour {
         if (time < 2 && !set) {
             time += Time.deltaTime;
             return;
-        } 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Debug.Log("Escape! Returning to Menu");
+            SceneManager.LoadSceneAsync("Scenes/MenuScene");
+        }
         
         if (time >= 2 && !set) {
             trackerStartPos = trackerObject.transform.localPosition;
             set = true;
         }
-
-        SliderText.text = offset.x.ToString();
-        // if (Slider.value - .5f != offset.x) {
-        //     offset.x = Slider.value - .5f;
-        // }
 
         offset.x += Input.GetAxis("Mouse X") / 5;
 
