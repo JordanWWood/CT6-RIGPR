@@ -7,28 +7,6 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Samples" t="Include">
-          <e p="High Definition RP" t="Include">
-            <e p="7.3.1" t="Include">
-              <e p="Procedural Sky" t="Include">
-                <e p="Editor" t="Include">
-                  <e p="ProceduralSky" t="Include">
-                    <e p="ProceduralSkyEditor.cs" t="Include" />
-                  </e>
-                </e>
-                <e p="Runtime" t="Include">
-                  <e p="ProceduralSky" t="Include">
-                    <e p="ProceduralSky.cs" t="Include" />
-                    <e p="ProceduralSkyRenderer.cs" t="Include" />
-                    <e p="Resources" t="Include">
-                      <e p="ProceduralSky.shader" t="Include" />
-                    </e>
-                  </e>
-                </e>
-              </e>
-            </e>
-          </e>
-        </e>
         <e p="Scripts" t="Include">
           <e p="InGame" t="Include">
             <e p="AudioController.cs" t="Include" />

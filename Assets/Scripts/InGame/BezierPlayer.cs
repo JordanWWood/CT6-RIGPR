@@ -58,8 +58,6 @@ public class BezierPlayer : MonoBehaviour {
         }
 
         AudioSource.clip = audioClip;
-
-        Slider.value = .5f;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -95,7 +93,7 @@ public class BezierPlayer : MonoBehaviour {
         transform.position = curve.CalcPositionAndTangentByDistanceRatio(distance, out var tangent);
         transform.rotation = Quaternion.LookRotation(tangent);
 
-        playerObject.transform.localPosition = new Vector3(offset.x, offset.y + 0.562f);
+        playerObject.transform.localPosition = new Vector3(offset.x, offset.y + 0.5f);
 
         if (started == false) {
             var delay = (1f / config.beatsPerMinute) * 5f;
