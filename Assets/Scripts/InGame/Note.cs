@@ -12,6 +12,7 @@ public class Note : MonoBehaviour {
         if (!other.gameObject.CompareTag("NoteCollision") || gameObject.CompareTag("BackNote")) return;
         
         StaticEvents.NoteHitEvent.Invoke();
+        gameObject.name = "Destroyed";
         Destroy(gameObject);
     }
 }
