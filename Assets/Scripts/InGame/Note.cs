@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 
 public class Note : MonoBehaviour {
     private void Start() {

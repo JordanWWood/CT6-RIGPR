@@ -19,11 +19,14 @@
             <e p="TrackManager.cs" t="Include" />
           </e>
           <e p="Menu" t="Include">
+            <e p="EndScene.cs" t="Include" />
+            <e p="EndSceneButton.cs" t="Include" />
             <e p="ListSongs.cs" t="Include" />
             <e p="SelectSong.cs" t="Include" />
           </e>
           <e p="Persistant" t="Include">
             <e p="PersistantData.cs" t="Include" />
+            <e p="Stats.cs" t="Include" />
           </e>
         </e>
         <e p="ThirdParty" t="Include">
@@ -251,6 +254,7 @@
               <e p="SingletonBehaviour.cs" t="Include" />
             </e>
             <e p="ViveInputUtility" t="Include">
+              <e p="changelog.txt" t="Include" />
               <e p="Resources" t="Include">
                 <e p="Unlit-AlphaWithFade.shader" t="Include" />
               </e>

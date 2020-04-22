@@ -58,8 +58,7 @@ public class BezierPlayer : MonoBehaviour {
         }
 
         AudioSource.clip = audioClip;
-
-        Slider.value = .5f;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private Vector3 lastPoint;
@@ -70,17 +69,19 @@ public class BezierPlayer : MonoBehaviour {
         if (time < 2 && !set) {
             time += Time.deltaTime;
             return;
-        } 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Debug.Log("Escape! Returning to Menu");
+            SceneManager.LoadSceneAsync("Scenes/MenuScene");
+        }
         
         if (time >= 2 && !set) {
             trackerStartPos = trackerObject.transform.localPosition;
             set = true;
         }
 
-        SliderText.text = offset.x.ToString();
-        if (Slider.value - .5f != offset.x) {
-            offset.x = Slider.value - .5f;
-        }
+        offset.x += Input.GetAxis("Mouse X") / 5;
 
         trackerPosDiff = trackerStartPos - trackerObject.transform.localPosition;
         offset += new Vector2((-trackerPosDiff.x) / 100, 0);
@@ -92,7 +93,7 @@ public class BezierPlayer : MonoBehaviour {
         transform.position = curve.CalcPositionAndTangentByDistanceRatio(distance, out var tangent);
         transform.rotation = Quaternion.LookRotation(tangent);
 
-        playerObject.transform.localPosition = new Vector3(offset.x, offset.y + 0.562f);
+        playerObject.transform.localPosition = new Vector3(offset.x, offset.y + 0.5f);
 
         if (started == false) {
             var delay = (1f / config.beatsPerMinute) * 5f;

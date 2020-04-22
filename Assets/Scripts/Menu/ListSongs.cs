@@ -9,6 +9,7 @@ public class ListSongs : MonoBehaviour {
     
     // Start is called before the first frame update
     void Start() {
+        Cursor.lockState = CursorLockMode.None;
         var directory = Directory.GetFiles("Assets/Maps");
 
         foreach (var file in directory) {
